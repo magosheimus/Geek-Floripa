@@ -1,279 +1,144 @@
-# 📱 Geek Floripa MVP - Resumo da Estrutura do Projeto
+# 🎮 Geek Floripa MVP
 
-## ✅ O Que Foi Criado
+**Marketplace mobile de camisetas personalizadas com estampas de animes e bandas de rock**
 
-### 1. **Estrutura Base do Projeto**
+## 📱 Sobre o Projeto
+
+Aplicativo e-commerce desenvolvido em **React Native + TypeScript** com backend **Firebase**, permitindo que clientes personalizem e encomendem camisetas com estampas curadas de animes e bandas de rock.
+
+### ✨ Funcionalidades Principais
+
+**Para Clientes:**
+- Catálogo dinâmico de estampas (animes e bandas)
+- Customização completa (cor, tamanho, quantidade)
+- Carrinho persistente (AsyncStorage)
+- Sistema de favoritos
+- Finalização via WhatsApp
+- Sistema de sugestões de novos temas
+
+**Para Lojistas:**
+- CRUD completo de catálogo (temas e estampas)
+- Gestão de pedidos com 6 status
+- Dashboard de relatórios e analytics
+- Upload de imagens para Firebase Storage
+
+## 🏗️ Stack Tecnológico
+
+### Frontend
+- **React Native** (Expo SDK 51)
+- **TypeScript** (100% type-safe)
+- **React Navigation** (Stack + Bottom Tabs)
+- **AsyncStorage** (persistência local)
+- **Context API** (state management)
+
+### Backend
+- **Firebase Authentication** (email/senha + JWT)
+- **Cloud Firestore** (database NoSQL em tempo real)
+- **Firebase Storage** (CDN para imagens)
+- **Firebase Hosting** (deploy de assets)
+
+### Segurança
+- Firestore Security Rules (role-based access)
+- Validação client-side e server-side
+- Autenticação persistente
+
+## 📂 Estrutura do Projeto
+
 ```
-app/
-├── src/
-│   ├── components/      # Componentes reutilizáveis (a criar)
-│   ├── hooks/          # Custom hooks (a criar)
-│   ├── navigation/     # Navegação entre telas (a criar)
-│   ├── screens/        # Telas do app (a criar)
-│   ├── services/       # ✅ Serviços de comunicação com Firebase
-│   ├── styles/         # ✅ Sistema de design (cores, espaçamento, tipografia)
-│   ├── types/          # ✅ Definições TypeScript
-│   └── utils/          # ✅ Utilitários (preços, WhatsApp)
-├── assets/             # Imagens e recursos
-├── App.tsx            # Componente principal
-└── package.json       # Dependências
-```
-
-### 2. **Tipos TypeScript Criados** (`src/types/`)
-- ✅ **catalogo.ts**: Estampa, Tema, ItemCarrinho, Tamanhos, Cores, LocalEstampa
-- ✅ **pedido.ts**: Pedido, ItemPedido, StatusPedido, DadosCliente
-- ✅ **sugestao.ts**: Sugestao, StatusSugestao
-- ✅ **log.ts**: Log, TipoLog (métricas de uso)
-
-### 3. **Serviços Firebase Criados** (`src/services/`)
-- ✅ **firebase.ts**: Configuração e inicialização do Firebase
-- ✅ **catalogo.service.ts**: Funções para gerenciar catálogo (temas e estampas)
-- ✅ **pedido.service.ts**: Funções para criar e gerenciar pedidos
-- ✅ **sugestao.service.ts**: Funções para gerenciar sugestões via Pinterest
-- ✅ **log.service.ts**: Funções para registrar métricas e eventos
-
-### 4. **Utilitários Criados** (`src/utils/`)
-- ✅ **pricing.ts**: Cálculo de preços baseado nas regras da loja
-  - Preço base: R$80 (normal) / R$100 (extra grande)
-  - Acréscimo frente+verso: R$20
-- ✅ **whatsapp.ts**: Integração com WhatsApp
-  - Enviar pedidos formatados
-  - Enviar sugestões
-  - Confirmar pagamento PIX
-
-### 5. **Sistema de Design** (`src/styles/`)
-- ✅ **colors.ts**: Paleta retro (laranja #FF6B00, preto, branco, cinzas)
-- ✅ **spacing.ts**: Espaçamentos, bordas, tamanhos de fonte e ícones
-- ✅ **typography.ts**: Tipografia (preparado para fontes pixel art)
-- ✅ **index.ts**: Tema unificado com sombras pixeladas
-
-### 6. **Dependências Instaladas**
-- ✅ Firebase (Firestore + Auth)
-- ✅ React Navigation (Native + Stack)
-- ✅ React Native WebView (para Pinterest)
-- ✅ AsyncStorage (armazenamento local)
-- ✅ React Native Screens + Safe Area Context
-
----
-
-## 📋 Próximos Passos
-
-### **Fase 1: Configurar Firebase** 🔥
-- [ ] Criar projeto no Firebase Console
-- [ ] Ativar Firestore Database
-- [ ] Copiar credenciais para `src/services/firebase.ts`
-- [ ] Criar coleções: `temas`, `catalogo`, `encomendas`, `sugestoes`, `logs`
-- [ ] Configurar regras de segurança
-- [ ] Popular catálogo inicial com dados de teste
-
-👉 **Guia completo**: `FIREBASE_SETUP.md`
-
-### **Fase 2: Popular Catálogo** 📊
-- [ ] Upload das imagens para Firebase Storage ou hospedagem
-- [ ] Criar documentos na coleção `temas`:
-  - 5 animes: Naruto, One Piece, Demon Slayer, Jujutsu Kaisen, Dan Da Dan
-  - 5 bandas: Metallica, Nirvana, Pink Floyd, Black Sabbath, Foo Fighters
-- [ ] Criar documentos na coleção `catalogo` com todas as estampas
-- [ ] Configurar URLs das imagens (POSTER e estampas individuais)
-
-### **Fase 3: Criar Componentes UI** 🎨
-- [ ] Criar componentes básicos:
-  - `Button.tsx` (botão pixelado estilo retro)
-  - `Card.tsx` (card de tema/estampa)
-  - `Input.tsx` (campo de texto)
-  - `Header.tsx` (cabeçalho com logo)
-  - `Loading.tsx` (indicador de carregamento)
-
-### **Fase 4: Criar Telas** 📱
-- [ ] **HomeScreen**: Painéis de animes e bandas com scroll horizontal
-- [ ] **CatalogoScreen**: Grid de estampas por tema
-- [ ] **DetalheEstampaScreen**: Detalhes + adicionar ao carrinho
-- [ ] **CarrinhoScreen**: Lista de itens + total
-- [ ] **BuscaScreen**: Busca com integração Pinterest
-- [ ] **SugestaoScreen**: Formulário de sugestão
-- [ ] **PagamentoScreen**: QR Code PIX + confirmação
-
-### **Fase 5: Implementar Navegação** 🧭
-- [ ] Configurar Stack Navigator
-- [ ] Criar fluxo de navegação entre telas
-- [ ] Adicionar Bottom Tabs (Home, Busca, Carrinho)
-
-### **Fase 6: Implementar Lógica de Negócio** ⚙️
-- [ ] Hook `useCarrinho` para gerenciar carrinho
-- [ ] Cálculo automático de preços
-- [ ] Validação de formulários
-- [ ] Integração completa com Firebase
-- [ ] Sistema de logs de uso
-
-### **Fase 7: Testes e Refinamentos** 🧪
-- [ ] Testar fluxo completo de encomenda
-- [ ] Testar busca e sugestões via Pinterest
-- [ ] Testar integração WhatsApp
-- [ ] Ajustar estilos e responsividade
-- [ ] Otimizar performance
-
-### **Fase 8: Dashboard Lojista (Futuro)** 👨‍💼
-- [ ] Tela de login
-- [ ] Lista de pedidos com filtros por status
-- [ ] Lista de sugestões
-- [ ] Análises básicas (top temas, tamanhos, cores)
-- [ ] Exportação de dados (CSV/JSON)
-
----
-
-## 🎯 Estrutura de Dados do Firebase
-
-### Coleção: `temas`
-```typescript
-{
-  tipo: "anime" | "banda",
-  nome: string,           // Ex: "Naruto"
-  posterUrl: string,      // URL do POSTER_
-  totalEstampas: number,
-  ativo: boolean
-}
+app/src/
+├── components/        # Componentes reutilizáveis
+├── contexts/          # Context API (Auth, Carrinho, Favoritos)
+├── screens/           # Telas (Cliente + Lojista)
+├── services/          # Integração Firebase
+├── types/             # TypeScript interfaces
+├── styles/            # Design system
+└── utils/             # Funções auxiliares
 ```
 
-### Coleção: `catalogo`
-```typescript
-{
-  tipo: "anime" | "banda",
-  tema: string,           // Ex: "Naruto"
-  nomeEstampa: string,    // Ex: "Kakashi 01"
-  imagemUrl: string,
-  tags: string[],         // Ex: ["shounen", "konoha"]
-  ativo: boolean,
-  preco: number,
-  dataCriacao: number
-}
-```
+## 🚀 Como Executar
 
-### Coleção: `encomendas`
-```typescript
-{
-  itens: ItemPedido[],
-  valorTotal: number,
-  status: "pendente" | "aguardando_pagamento" | "pago" | ...,
-  cliente: { nome?, telefone? },
-  createdAt: number,
-  updatedAt?: number
-}
-```
+### Pré-requisitos
+- Node.js 18+
+- Expo CLI
+- Conta Firebase configurada
 
-### Coleção: `sugestoes`
-```typescript
-{
-  pinUrl: string,         // URL do Pinterest
-  tema: string,
-  descricao: string,
-  contato: { nome?, telefone?, querOrcamento },
-  queryOriginal: string,
-  status: "nova" | "em_analise" | ...,
-  createdAt: number
-}
-```
-
----
-
-## 🛠️ Comandos Úteis
-
-### Iniciar o projeto:
+### Instalação
 ```bash
-cd "app"
-npx.cmd expo start
+cd app
+npm install
+npx expo start
 ```
 
-### Limpar cache:
+### Build APK
 ```bash
-npx.cmd expo start -c
+eas build --platform android --profile production
 ```
 
-### Instalar nova dependência:
-```bash
-npm.cmd install nome-do-pacote
+## 🎯 Métricas do Projeto
+
+- **~5.000 linhas de código** TypeScript
+- **395 arquivos** (incluindo assets)
+- **12 telas** (6 cliente + 6 lojista)
+- **15 componentes** reutilizáveis
+- **5 serviços** Firebase
+- **10 interfaces** TypeScript
+
+## 📊 Arquitetura Firebase
+
+### Collections
+- `temas/` - Animes e bandas cadastrados
+- `estampas/` - Catálogo completo de imagens
+- `pedidos/` - Encomendas dos clientes
+- `sugestoes/` - Sugestões de novos temas
+
+### Storage
+```
+storage/
+├── temas/{nome}/capa.jpg
+└── estampas/{tema}/{nome}.jpg
 ```
 
-### Build para Android:
-```bash
-npx.cmd eas build --platform android
-```
+## 🔐 Segurança
 
----
+- **Authentication**: Firebase Auth com JWT
+- **Authorization**: Firestore Rules com role-based access
+- **Validação**: TypeScript + input sanitization
+- **Storage**: Upload apenas autenticado, leitura pública
 
-## 📞 Configurações Importantes
+## 📱 Sistema de Precificação
 
-### WhatsApp
-Arquivo: `src/utils/whatsapp.ts`
 ```typescript
-const WHATSAPP_NUMERO = '5548999999999'; // ⚠️ ALTERAR
+Preços base:
+- P: R$ 45,00
+- M: R$ 50,00
+- G: R$ 55,00
+- GG: R$ 60,00
+- XG: R$ 65,00
 ```
 
-### Firebase
-Arquivo: `src/services/firebase.ts`
-```typescript
-const firebaseConfig = {
-  apiKey: "...",           // ⚠️ ALTERAR após criar projeto
-  authDomain: "...",
-  projectId: "...",
-  // ...
-};
-```
+## 🎨 Design System
 
----
+- **Paleta**: Laranja #FF6B00 (principal) + preto/branco
+- **Estilo**: Retro gamer com bordas pixeladas
+- **Tipografia**: Preparado para fontes pixel art
 
-## 📚 Documentação de Referência
+## 📚 Documentação Completa
 
-- **Firebase**: https://firebase.google.com/docs/firestore
-- **React Navigation**: https://reactnavigation.org/docs/getting-started
-- **Expo**: https://docs.expo.dev/
-- **React Native**: https://reactnative.dev/docs/getting-started
+Para guia técnico detalhado, consulte: `APRESENTACAO_TECNICA.md`
 
----
+## 🔮 Roadmap Futuro
 
-## 💡 Dicas Importantes
+- [ ] Pagamento online (Stripe/Mercado Pago)
+- [ ] Push notifications (FCM)
+- [ ] Chat lojista-cliente (Firestore real-time)
+- [ ] Analytics (Firebase Analytics)
+- [ ] Versão iOS
+- [ ] Web dashboard administrativo
 
-### Organização de Imagens
-Você tem duas opções:
+## 👥 Autor
 
-1. **Firebase Storage** (recomendado para MVP):
-   - Upload via console do Firebase
-   - URLs automáticas e seguras
-   - Fácil de gerenciar
+Desenvolvido como MVP acadêmico - **Geek Floripa**
 
-2. **Hospedagem Externa** (Imgur, Cloudinary):
-   - Mais rápido para testar
-   - Basta ter as URLs públicas
+## 📄 Licença
 
-### Fontes Pixel Art
-Para o visual retro, recomendo baixar fontes como:
-- **Press Start 2P** (Google Fonts)
-- **Pixelify Sans** (Google Fonts)
-- **VT323** (Google Fonts)
-
-Instalar com:
-```bash
-npx.cmd expo install expo-font @expo-google-fonts/press-start-2p
-```
-
-### Git (Controle de Versão)
-Não esqueça de criar um `.gitignore` para não commitar:
-- `node_modules/`
-- `.expo/`
-- `src/services/firebase.ts` (credenciais sensíveis)
-
----
-
-## 🎨 Paleta de Cores Geek Floripa
-
-- **Principal**: `#FF6B00` (Laranja vibrante)
-- **Secundária**: `#000000` (Preto)
-- **Background**: `#FFFFFF` (Branco)
-- **Acentos**: Cinzas para dithering
-
-**Estilo**: Retro gamer com bordas grossas, sombras pixeladas e visual 8-bit.
-
----
-
-✨ **Está tudo pronto para começar a desenvolver!** 
-
-O próximo passo mais importante é **configurar o Firebase** seguindo o guia `FIREBASE_SETUP.md`. Depois disso, podemos começar a criar as telas e componentes do app.
+Projeto acadêmico - Todos os direitos reservados
